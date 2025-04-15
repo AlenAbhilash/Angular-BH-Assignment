@@ -1,33 +1,50 @@
-  <div class="body">
+<div class="body">
   <div class="sidebar">
     <h1>BH</h1>
-    <a>Dashboard</a>
-    <a>File Manager</a>
-    <a>Letter Box</a>
-    <a>Tasks</a>
-    <a>FAQ</a>
+    <a class="sidebar-link" [class.active]="activeitem === 'dashboard'" (click)="select('dashboard')">
+      <i class="fas fa-tachometer-alt"></i> Dashboard
+    </a>
+
+    <a class="sidebar-link" [class.active]="activeitem === 'filemanager'" (click)="select('filemanager')">
+      <i class="fas fa-folder"></i> File Manager
+    </a>
+
+    <a class="sidebar-link" [class.active]="activeitem === 'letterbox'" (click)="select('letterbox')">
+      <i class="fas fa-envelope"></i> Letter Box
+    </a>
+
+    <a class="sidebar-link" [class.active]="activeitem === 'tasks'" (click)="select('tasks')">
+      <i class="fas fa-tasks"></i> Tasks
+    </a>
+
+    <a class="sidebar-link" [class.active]="activeitem === 'faq'" (click)="select('faq')">
+      <i class="fas fa-question-circle"></i> FAQ
+    </a>
   </div>
   <div class="main">
     <div class="header">
-        <h2>Dashboard</h2>
-        <div class="profile-container">
-        <div class="proflie"></div>
-       <div>
-        <h4>{{username}}</h4>
-        <h4 class="password">{{password}}</h4>
-        <div>
-            <button class="logout" (click)="onLogout()">Logout</button>
+      <h2>Dashboard</h2>
+      <div class="profile-dropdown-container" (click)="Dropdown()">
+        <div class="profile-info">
+          <div class="profile-pic"></div>
+          <h4>{{ username }}</h4>
+          <span class="arrow" [class.open]="dropdown">&#9662;</span>
         </div>
-       </div>
+        <div class="dropdown-menu" *ngIf="dropdown">
+          <a class="dropdown-item"><i class="fas fa-user"></i> My Profile</a>
+          <a class="dropdown-item"><i class="fas fa-envelope"></i> Inbox</a>
+          <a class="dropdown-item"><i class="fas fa-cog"></i> Settings</a>
+          <a class="dropdown-item"><i class="fas fa-tasks"></i> Taskboard</a>
+          <a class="dropdown-item" (click)="onLogout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
         </div>
+      </div>
     </div>
-    
     <div class="table-container">
       <h3 style="margin-bottom: 20px;">Projects</h3>
       <table>
         <thead>
           <tr>
-            <th></th>
+            <th><input type="checkbox"></th>
             <th>Files Name</th>
             <th>File Type</th>
             <th>Date</th>
@@ -35,42 +52,45 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><button class="table-check">1</button></td>
-            <td class="file-name">Rules Post on Dribble</td>
-            <td><span class="badge doc">Document</span></td>
-            <td>12 Aug 2024</td>
-            <td>Monry Hasu</td>
+          <tr *ngFor="let project of paginationpage">
+            <td><input type="checkbox" /></td>
+            <td class="file-name">
+              <img
+              [src]="'https://picsum.photos/seed/' + project.id + '/60'"
+              alt="project image" />            
+              {{ project.title }}
+            </td>
+            <td>
+              <span class="badge doc"></span>
+              <p class="table-bad">Post</p>
+            </td>
+            <td>{{ project.id }} - 04-2025</td>
+            <td>User {{ project.userId }}</td>
           </tr>
-          <tr>
-            <td><button class="table-check" style="background-color: #16b5ff;">2</button></td>
-            <td class="file-name">Login & Sign Up Ui</td>
-            <td><span class="badge ani">Animation</span></td>
-            <td>19 Mar 2024</td>
-            <td>Alex Madus</td>
-          </tr>
-          <tr>
-            <td><button class="table-check" style="background-color: #cc7a00;">3</button></td>
-            <td class="file-name">Nft website Pages</td>
-            <td><span class="badge img">Image</span></td>
-            <td>30 Jun 2024</td>
-            <td>Nomru Nalij</td>
-          </tr>
-          <tr>
-            <td><button class="table-check">4</button></td>
-            <td class="file-name"> Square Dashboard</td>
-            <td><span class="badge doc">Document</span></td>
-            <td>24 Oct 2024</td>
-            <td>Willium sen</td>
-          </tr>
-        </tbody>
+        </tbody>  
       </table>
       <div class="pagination">
-        <span class="disabled">Previous</span>
-        <button>1</button>
-        <span>2</span>
-      </div>
+        <button style="background-color: transparent; color: black;">
+          <span 
+            [class.disabled]="currentPage === 1"
+            (click)="currentPage > 1 && goToPage(currentPage - 1)">Previous</span>
+        </button>
+        <button 
+          *ngFor="let page of [1, 2, 3]" 
+          (click)="goToPage(page)"
+          [ngStyle]="{'background-color': currentPage === page ? '' : 'transparent', 'color': currentPage === page ? 'white' : 'black'}"
+          [class.active]="currentPage === page">
+          {{ page }}
+        </button>
+        <button style="background-color: transparent; color: black;">
+          <span 
+            [class.disabled]="currentPage === 3"
+            (click)="currentPage < 3 && goToPage(currentPage + 1)">Next</span>
+        </button>
+      </div>         
+    </div>
+    <div class="footer">
+      <p class="copyright">Copyright 2025 &copy; BH</p>
     </div>
   </div>
 </div>
-

@@ -1,18 +1,28 @@
-<div class="body-conatiner">
-  <div class="main-container">
-    <div class="second- container">
-      <h1 class="logo-text">BH</h1>
-      <div class="login-container">
-        <div class="input-box">
-          <i class="fa fa-user icon"></i>
-          <input type="text" placeholder="USERNAME" autocomplete="off" [(ngModel)]="user.name" (ngModelChange)="onChange()">
+<form #loginForm="ngForm" novalidate>
+  <div class="body-conatiner">
+    <div class="main-container">
+      <div class="second- container">
+        <h1 class="logo-text">BH</h1>
+        <div class="login-container">
+          <div class="input-box">
+            <i class="fa fa-user icon"></i>
+            <input type="text" name="username" placeholder="USERNAME" autocomplete="off" required
+              [(ngModel)]="user.name" (ngModelChange)="onChange()" #username="ngModel" />
+          </div>
+          <div *ngIf="username.invalid && username.touched" class="error">
+            <p style="color: red;">Username is required.</p>
+          </div>
+          <div class="input-box">
+            <i class="fa fa-lock icon"></i>
+            <input type="password" name="password" placeholder="PASSWORD" autocomplete="new-password" required
+              [(ngModel)]="user.password" (ngModelChange)="onChange()" #password="ngModel" />
+          </div>
+          <div *ngIf="password.invalid && password.touched" class="error">
+             <p style="color: red;">Password is required</p>
+          </div>
+          <button class="login-button" (click)="onLogin()">LOGIN</button>
         </div>
-        <div class="input-box">
-          <i class="fa fa-lock icon"></i>
-          <input type="password" placeholder="PASSWORD" autocomplete="new-password"  [(ngModel)]="user.password" (ngModelChange)="onChange()">
-        </div>
-        <button class="login-button" (click)="onLogin()">LOGIN</button>
       </div>
     </div>
   </div>
-</div>
+</form>
