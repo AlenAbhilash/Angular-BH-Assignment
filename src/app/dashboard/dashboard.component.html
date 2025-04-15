@@ -1,0 +1,76 @@
+  <div class="body">
+  <div class="sidebar">
+    <h1>BH</h1>
+    <a>Dashboard</a>
+    <a>File Manager</a>
+    <a>Letter Box</a>
+    <a>Tasks</a>
+    <a>FAQ</a>
+  </div>
+  <div class="main">
+    <div class="header">
+        <h2>Dashboard</h2>
+        <div class="profile-container">
+        <div class="proflie"></div>
+       <div>
+        <h4>{{username}}</h4>
+        <h4 class="password">{{password}}</h4>
+        <div>
+            <button class="logout" (click)="onLogout()">Logout</button>
+        </div>
+       </div>
+        </div>
+    </div>
+    
+    <div class="table-container">
+      <h3 style="margin-bottom: 20px;">Projects</h3>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Files Name</th>
+            <th>File Type</th>
+            <th>Date</th>
+            <th>Author</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><button class="table-check">1</button></td>
+            <td class="file-name">Rules Post on Dribble</td>
+            <td><span class="badge doc">Document</span></td>
+            <td>12 Aug 2024</td>
+            <td>Monry Hasu</td>
+          </tr>
+          <tr>
+            <td><button class="table-check" style="background-color: #16b5ff;">2</button></td>
+            <td class="file-name">Login & Sign Up Ui</td>
+            <td><span class="badge ani">Animation</span></td>
+            <td>19 Mar 2024</td>
+            <td>Alex Madus</td>
+          </tr>
+          <tr>
+            <td><button class="table-check" style="background-color: #cc7a00;">3</button></td>
+            <td class="file-name">Nft website Pages</td>
+            <td><span class="badge img">Image</span></td>
+            <td>30 Jun 2024</td>
+            <td>Nomru Nalij</td>
+          </tr>
+          <tr>
+            <td><button class="table-check">4</button></td>
+            <td class="file-name"> Square Dashboard</td>
+            <td><span class="badge doc">Document</span></td>
+            <td>24 Oct 2024</td>
+            <td>Willium sen</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="pagination">
+        <span class="disabled">Previous</span>
+        <button>1</button>
+        <span>2</span>
+      </div>
+    </div>
+  </div>
+</div>
+
